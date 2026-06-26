@@ -47,7 +47,6 @@ public class BST {
         
     }
     
-    
     /**
      * Busca o nó cujo valor é igual ao passado como parâmetro. Essa é a implementação 
      * iterativa clássica da busca binária em uma árvore binária de pesquisa.
@@ -56,30 +55,63 @@ public class BST {
      * o elemento não esteja presente na árvore.
      */
     public Node search(int element) {
+        if (isEmpty()) return null;
+        
+        Node aux = this.root;
+
+        while(aux != null){
+
+            if (aux.value == element){
+                return aux;
+        
+            }  else if (aux.value > element){
+                aux = aux.left;
+            } else {
+                aux = aux.right;
+            }
+        
+        }
+        //caso o elemento não esteja presente 
         return null;
     }
-    
     
     /**
      * Retorna a altura da árvore.
      */
     public int height() {
-        return -1;
+
+        return height(this.root);
     }
 
+    private int height(Node node){
+
+        if (node == null) return -1;
+     
+        return 1 + Math.max(height(node.right), height(node.left));
+    }
 
     public boolean equals(BST outra) {
         return false;
     }
 
+    public boolean isLeaf(Node node){
+
+        return (node.right == null && node.left == null);
+    }
     /**
     * Retorna o número de folhas da árvore.
     */
     public int contaFolhas() {
         return -1;
+
     }
 
-    
+    private int contaFolhas(Node node){
+
+        if ((node.right == null) && (node.left == null)) return 0;
+        
+        return contaFolhas(node.right) + ;
+    }
 
     /**
      * @return o tamanho da árvore.
